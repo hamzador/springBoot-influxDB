@@ -1,6 +1,7 @@
 package org.tem.hello.configurations;
 
 import org.influxdb.dto.Point;
+import org.influxdb.impl.InfluxDBResultMapper;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,10 @@ import org.springframework.data.influxdb.converter.PointConverter;
 @EnableConfigurationProperties(InfluxDBProperties.class)
 public class InfluxDBConfiguration
 {
+	@Bean
+	public InfluxDBResultMapper getInfluxDBResultMapper() {
+		return new InfluxDBResultMapper();
+	}
   @Bean
   public InfluxDBConnectionFactory connectionFactory(final InfluxDBProperties properties)
   {
